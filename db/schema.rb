@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_205237) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.integer "bgg_id"
-    t.integer "bga_id"
+    t.string "bga_id"
     t.string "img_url"
     t.integer "min_players"
     t.integer "max_players"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_205237) do
   end
 
   create_table "sessions", force: :cascade do |t|
+    t.datetime "date"
     t.integer "user_id"
     t.integer "game_id"
     t.string "players"
