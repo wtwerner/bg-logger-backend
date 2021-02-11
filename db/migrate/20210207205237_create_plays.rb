@@ -1,6 +1,6 @@
-class CreateSessions < ActiveRecord::Migration[6.0]
+class CreatePlays < ActiveRecord::Migration[6.0]
   def change
-    create_table :sessions do |t|
+    create_table :plays do |t|
       t.datetime :date
       t.integer :user_id, foreign_key: true
       t.integer :game_id, foreign_key: true

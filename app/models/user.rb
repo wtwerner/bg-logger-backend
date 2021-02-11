@@ -1,6 +1,5 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :user_games
-    has_many :games, through: :user_games
-    has_many :sessions
+    has_many :games
+    has_many :plays, through: :games
 end
