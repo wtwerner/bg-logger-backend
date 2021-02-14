@@ -4,10 +4,15 @@ User.create(name: "Lucy", email: "lucy@test.com", password: "password")
 User.create(name: "Ella", email: "ella@test.com", password: "password")
 
 # Games
-game = Game.create(owned: true, wishlist: true, played: true, bga_id: "RLlDWHh7hR")
+o_game = Game.create(owned: true, wishlist: false, played: true, bga_id: "RLlDWHh7hR")
 user = User.first
 
-user.games << game
+user.games << o_game
+
+w_game = Game.create(owned: false, wishlist: true, played: true, bga_id: "i5Oqu5VZgP")
+user = User.first
+
+user.games << w_game
 
 
 # Sessions
