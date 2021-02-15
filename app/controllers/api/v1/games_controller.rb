@@ -1,5 +1,5 @@
 class Api::V1::GamesController < ApplicationController
-  before_action :set_game, only: [:show, :update, :destroy]
+  before_action :set_game, only: [:show, :update]
 
   # GET /games
   def index
@@ -36,7 +36,12 @@ class Api::V1::GamesController < ApplicationController
 
   # DELETE /games/1
   def destroy
-    @game.destroy
+    @game = Game.find_by(bga_id: params[:bga_id])
+    if Game.destroy(@game.id)
+      render json: @game
+    else
+      render json: @game.errors, status: :unprocessable_entity
+    end
   end
 
   private
