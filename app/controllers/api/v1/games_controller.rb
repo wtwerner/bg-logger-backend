@@ -15,10 +15,11 @@ class Api::V1::GamesController < ApplicationController
 
   # POST /games
   def create
-    @game = Game.new(game_params)
+    puts current_user
+    @game = Game.new(user_id: current_user.id, bga_id: params[:bga_id], wishlist: params[:wishlist], owned: params[:owned])
 
     if @game.save
-      render json: @game, status: :created, location: @game
+      render json: @game
     else
       render json: @game.errors, status: :unprocessable_entity
     end
