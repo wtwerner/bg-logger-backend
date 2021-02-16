@@ -1,5 +1,5 @@
 class Api::V1::GamesController < ApplicationController
-  before_action :set_game, only: [:show, :update]
+  before_action :set_game, only: [:show]
 
   # GET /games
   def index
@@ -15,7 +15,6 @@ class Api::V1::GamesController < ApplicationController
 
   # POST /games
   def create
-    puts current_user
     @game = Game.new(user_id: current_user.id, bga_id: params[:bga_id], wishlist: params[:wishlist], owned: params[:owned])
 
     if @game.save
@@ -27,6 +26,7 @@ class Api::V1::GamesController < ApplicationController
 
   # PATCH/PUT /games/1
   def update
+    @game = Game.find_by(bga_id: params[:bga_id])
     if @game.update(game_params)
       render json: @game
     else
@@ -52,6 +52,6 @@ class Api::V1::GamesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def game_params
-      params.fetch(:game, {})
+      params.require(:game).permit(:id, :bga_id, :user_id, :wishlist, :owned, :played)
     end
 end
