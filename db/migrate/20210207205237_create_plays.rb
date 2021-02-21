@@ -8,6 +8,7 @@ class CreatePlays < ActiveRecord::Migration[6.0]
       t.integer :duration
       t.string :winner
       t.text :notes
+      t.string :bga_id
 
       t.timestamps
     end

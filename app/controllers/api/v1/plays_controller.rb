@@ -18,6 +18,7 @@ class Api::V1::PlaysController < ApplicationController
         @play = Play.new(
           user_id: current_user.id, 
           game_id: Game.find_by(bga_id: params[:game_id]).id, 
+          bga_id: params[:game_id],
           date: params[:date], 
           players: params[:players], 
           duration: params[:duration], 
