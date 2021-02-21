@@ -17,7 +17,7 @@ class Api::V1::PlaysController < ApplicationController
     def create
         @play = Play.new(
           user_id: current_user.id, 
-          game_id: params[:game_id], 
+          game_id: Game.find_by(bga_id: params[:game_id]).id, 
           date: params[:date], 
           players: params[:players], 
           duration: params[:duration], 
