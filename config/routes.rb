@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :friends
   post "/api/v1/login", to: "api/v1/sessions#create"
   post "/api/v1/signup", to: "api/v1/users#create"
   get "/api/v1/get_current_user", to: "api/v1/sessions#get_current_user"
