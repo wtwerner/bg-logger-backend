@@ -35,6 +35,6 @@ module BgLoggerBackend
     config.api_only = true
 
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: '_cookie_name'
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_cookie_name', domain: :all
   end
 end
