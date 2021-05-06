@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:update, :destroy]
 
   # GET /users
   def index
@@ -11,6 +11,12 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
+    if params[:email]
+      @user = User.find_by(email: params[:email])
+    else
+      @user = User.find(params[:id])
+    end
+
     user_json = UserSerializer.new(@user).serialized_json
     render json: user_json
   end
